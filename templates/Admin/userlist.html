@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid">
+
+    <h3 class="mb-3">User List</h3>
+
+
+    <div class="mb-3">
+        <button class="btn btn-primary">
+            + Add User
+        </button>
+    </div>
+
+
+    <table class="table table-bordered table-striped">
+
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+
+{% endblock %}

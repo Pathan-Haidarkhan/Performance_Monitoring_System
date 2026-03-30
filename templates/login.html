@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Performance Monitoring System - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #f0fdf4;
+            overflow-x: hidden;
+        }
+
+        .left-panel {
+            background: linear-gradient(135deg, #0B3C5D, #4A6572);
+            color: white;
+            min-height: 100vh;
+            animation: fadeSlide 1.2s ease-in-out;
+        }
+
+        .left-panel img {
+            max-width: 70%;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .system-title {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        .system-subtitle {
+            opacity: 0.8;
+        }
+
+        .login-section {
+            min-height: 100vh;
+            animation: fadeSlideRight 1.2s ease-in-out;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 380px;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .login-card:hover {
+            transform: translateY(-5px);
+        }
+        button:hover {
+            background-color: #4A6572  !important;
+        }
+
+<!--        .btn-green {-->
+<!--            background-color: #26AB3E;-->
+<!--            color: white;-->
+<!--            transition: all 0.3s ease;-->
+<!--        }-->
+
+<!--        .btn-green:hover {-->
+<!--            background-color: #14532d;-->
+<!--            transform: scale(1.03);-->
+<!--        }-->
+
+        /* Animations */
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeSlideRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* Mobile Design */
+        @media (max-width: 768px) {
+            .left-panel {
+                min-height: 40vh;
+                padding: 30px 15px;
+                text-align: center;
+            }
+
+            .left-panel img {
+                max-width: 50%;
+            }
+
+            .login-section {
+                min-height: 60vh;
+                padding: 30px 20px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body style="background-color:#F4F6F9;">
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6 d-flex flex-column justify-content-center align-items-center left-panel p-5">
+
+            <img src="{{ url_for('static', filename='images/login-bg.png') }}"
+                 class="img-fluid mb-4">
+
+            <div class="text-center">
+                <div class="system-title">Performance Monitoring System</div>
+                <div class="system-subtitle mt-2">
+                    Track • Manage • Analyze Performance
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6 d-flex justify-content-center align-items-center login-section">
+            <div class="card shadow p-4 login-card" style="background-color:#FFFFFF; border:1px solid #9AA5B1;">
+                <h4 class="text-center mb-4 text-success">Login</h4>
+                <input type="text" id="email" class="form-control mb-3" placeholder="Username Or Email">
+                <div class="mb-3 position-relative">
+                    <input type="password"
+                           id="password"
+                           class="form-control pe-5"
+                           placeholder="Password">
+
+                    <button type="button"
+                            onclick="togglePassword()"
+                            class="btn btn-sm position-absolute top-50 end-0 translate-middle-y me-2 border-0 bg-transparent">
+
+                        <span id="toggleIcon">👁</span>
+                    </button>
+                </div>
+
+                <button id="loginBtn"  class="btn w-100 text-white"  style="background-color:#0B3C5D">
+                    Sign In
+                </button>
+
+                <div id="error" class="text-danger mt-3 text-center"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const routes = {
+        admin: "{{ url_for('ui.admin_dashboard') }}",
+        manager: "{{ url_for('ui.manager_dashboard') }}",
+        employee: "{{ url_for('ui.employee_dashboard') }}"
+    };
+</script>
+<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/login.js') }}"></script>
+
+</body>
+</html>
