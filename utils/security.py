@@ -25,7 +25,7 @@ def current_user():
 
 def current_user_role():
     identity = get_jwt()
-    return identity.get('role')
+    return identity.get('role').upper()
 
 def role_required(*roles):
     def decorator(func):

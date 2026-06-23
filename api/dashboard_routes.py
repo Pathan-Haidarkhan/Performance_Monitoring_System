@@ -78,7 +78,8 @@ def topPerformers():
 
 @dashboard_routes.route('/performanceTrend', methods=['GET'])
 @jwt_required()
-@role_required(["ADMIN", "MANAGER", "EMPLOYEE"])
+@role_required('ADMIN', 'MANAGER', 'EMPLOYEE')
+# @role_required('ADMIN')
 def performanceTrend():
     Months = request.args.get("months", 6, type=int)
     user_id = request.args.get("userId", type=int)
@@ -99,8 +100,15 @@ def performanceTrend():
 def companyRanking():
     Month = request.args.get("month", type=int)
     Year = request.args.get("year", type=int)
+    Page = request.args.get("page", type=int)
+    PageSize = request.args.get("pagesize", type=int)
+    Search = request.args.get("search", type=str)
+    sortColumn  = request.args.get("sortcolumn", type=str)
+    sortDirection  = request.args.get("sortdirection", type=str)
 
-    responseDto, success, status = DashboardService.companyRanking(months=Month, year=Year)
+
+    responseDto, success, status = DashboardService.companyRanking(month=Month, year=Year,pagesize=PageSize,page=Page,
+                                                                   search=Search,sortcolumn=sortColumn,sortdirection=sortDirection)
 
     return api_response(
         message=responseDto['message'],
@@ -116,7 +124,7 @@ def ratingDistribution():
     Month = request.args.get("month", type=int)
     Year = request.args.get("year", type=int)
 
-    responseDto, success, status = DashboardService.ratingDistribution(months=Month, year=Year)
+    responseDto, success, status = DashboardService.ratingDistribution(month=Month, year=Year)
 
     return api_response(
         message=responseDto['message'],

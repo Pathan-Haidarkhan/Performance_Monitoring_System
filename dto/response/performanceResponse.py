@@ -41,3 +41,10 @@ class PerformanceSummaryDTO(BaseModel):
 
     class Config:
         from_attributes  = True
+
+
+class CompanyRankingItemDTO(BaseModel):
+    rank: int
+    employee: str
+    score: float
+    rating: str

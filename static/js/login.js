@@ -1,7 +1,6 @@
 import { saveTokens, getAccessToken } from './auth.js';
 
-
-function togglePassword() {
+document.getElementById("toggleBtn").addEventListener("click", function(){
 
     const passwordField = document.getElementById("password");
     const icon = document.getElementById("toggleIcon");
@@ -13,7 +12,7 @@ function togglePassword() {
         passwordField.type = "password";
         icon.innerHTML = "👁";
     }
-}
+});
 
 
 document.getElementById("loginBtn").addEventListener("click", login);
@@ -24,6 +23,15 @@ async function login() {
     const errorDiv = document.getElementById("error");
 
     errorDiv.innerText = "";
+
+    if(email == ""){
+        errorDiv.innerHTML = "Username Or Email is required";
+        return;
+    }
+    else if(password == ""){
+        errorDiv.innerHTML = "Password is required";
+        return;
+    }
 
     try {
 
@@ -53,27 +61,35 @@ async function login() {
 
 
         } else {
-            errorDiv.innerText = data.data.message || "Invalid credentials";
+            errorDiv.innerText = "Invalid credentials. Please try again.";
+            console.log(data.message);
         }
 
     } catch (error) {
-        errorDiv.innerText = "Server error. Please try again.";
+        console.log("Internal Server error.");
     }
 }
 
 function redirectByRole(role) {
 
-    if (role === "admin"){
-        window.location.href = routes.admin;
-    }
-    else if (role === "manager"){
-        window.location.href = routes.manager;
-    }
-    else if (role === "employee"){
-        window.location.href = routes.employee;
-    }
-    else{
-        logout();
+
+    switch(role){
+        case "ADMIN":
+            window.location.href = routes.admin;
+            break;
+
+        case "MANAGER":
+            window.location.href = routes.manager;
+            break;
+
+        case "EMPLOYEE":
+            window.location.href = routes.employee;
+            break;
+
+        default:
+            logout();
+
+
     }
 }
 

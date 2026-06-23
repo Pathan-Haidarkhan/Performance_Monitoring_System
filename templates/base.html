@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dataTables.min.css') }}">
+
+
 
     <style>
         body {
@@ -60,11 +63,6 @@
         .profile-info small {
             color: #cfd8dc;
         }
-<!--        .sidebar-title {-->
-<!--            padding: 20px;-->
-<!--            text-align: center;-->
-<!--            border-bottom: 1px solid rgba(255,255,255,0.2);-->
-<!--        }-->
 
         .sidebar h4 {
             padding: 20px;
@@ -232,10 +230,11 @@
 
 
 <script type="module" src="{{ url_for('static', filename='js/auth.js') }}"></script>
-<script type="module" src="{{ url_for('static', filename='js/employeeDashboard.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/base.js') }}"></script>
 <script src="{{ url_for('static', filename='js/chart.umd.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
-
+<script src="{{ url_for('static', filename='js/jquery-4.0.0.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/dataTables.min.js') }}"></script>
 
 </body>
 </html>

@@ -56,16 +56,6 @@
             background-color: #4A6572  !important;
         }
 
-<!--        .btn-green {-->
-<!--            background-color: #26AB3E;-->
-<!--            color: white;-->
-<!--            transition: all 0.3s ease;-->
-<!--        }-->
-
-<!--        .btn-green:hover {-->
-<!--            background-color: #14532d;-->
-<!--            transform: scale(1.03);-->
-<!--        }-->
 
         /* Animations */
         @keyframes fadeSlide {
@@ -138,7 +128,7 @@
 
         <div class="col-md-6 d-flex justify-content-center align-items-center login-section">
             <div class="card shadow p-4 login-card" style="background-color:#FFFFFF; border:1px solid #9AA5B1;">
-                <h4 class="text-center mb-4 text-success">Login</h4>
+                <h4 class="text-center mb-4" style="color:#0B3C5D">Login</h4>
                 <input type="text" id="email" class="form-control mb-3" placeholder="Username Or Email">
                 <div class="mb-3 position-relative">
                     <input type="password"
@@ -146,8 +136,7 @@
                            class="form-control pe-5"
                            placeholder="Password">
 
-                    <button type="button"
-                            onclick="togglePassword()"
+                    <button type="button" id="toggleBtn"
                             class="btn btn-sm position-absolute top-50 end-0 translate-middle-y me-2 border-0 bg-transparent">
 
                         <span id="toggleIcon">👁</span>

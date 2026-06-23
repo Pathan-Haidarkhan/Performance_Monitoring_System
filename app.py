@@ -25,7 +25,9 @@ register_jwt_handlers(app)
 app.register_blueprint(auth_routes)
 app.register_blueprint(user_routes)
 app.register_blueprint(task_routes)
+app.register_blueprint(dashboard_routes)
 app.register_blueprint(ui_bp)
+
 with app.app_context():
     db.create_all()
 

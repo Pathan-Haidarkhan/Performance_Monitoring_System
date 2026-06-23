@@ -48,7 +48,7 @@ class AuthService:
 
         return LoginResponse(
             user_id= user.id,
-            role= user.role.roleName,
+            role= user.role.roleName.upper(),
             access_token= token,
             refresh_token= refresh,
             username= user.firstName + ' ' + user.lastName,
