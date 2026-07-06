@@ -1,0 +1,225 @@
+{% extends "base.html" %}
+
+{% block title %}Add New User{% endblock %}
+
+{% block content %}
+<style>
+    .dashboard-card {
+        border: none;
+        border-radius: 16px;
+        overflow: hidden;
+        transition: all .3s ease;
+        height: 100%;
+        background: #fff;
+    }
+
+    .dashboard-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, .08);
+    }
+
+    .dashboard-header {
+        background: #ffffff;
+        border-bottom: 1px solid #edf2f7;
+        font-weight: 600;
+        font-size: 15px;
+        padding: 16px 20px;
+    }
+</style>
+<div class="container-fluid">
+
+  
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+
+                <div>
+                    <h3 class="fw-bold mb-1">
+                        Add New User
+                    </h3>
+
+                    <small class="text-muted">
+                        Create a new employee account and assign the appropriate role.
+                    </small>
+                </div>
+
+               <a href="{{ url_for('ui.userlist') }}"
+                    class="btn btn-outline-secondary">
+                        <i class="bi bi-arrow-left me-2"></i>
+                        Back
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+
+    
+    <div class="card border-0 shadow-sm dashboard-card">
+
+        <div class="card-header dashboard-header">
+            User Information
+        </div>
+
+        <div class="card-body">
+
+            <form id="userForm">
+
+                <div class="row g-4">
+
+                   
+                    <div class="col-md-6">
+                        <label class="form-label">
+                            First Name
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="firstName"
+                            class="form-control"
+                            placeholder="Enter first name">
+                        
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                
+                    <div class="col-md-6">
+                        <label class="form-label">
+                            Last Name
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="lastName"
+                            class="form-control"
+                            placeholder="Enter last name"
+                            >
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                   
+                    <div class="col-md-6">
+                        <label class="form-label">
+                            Email Address
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="email"
+                            class="form-control"
+                            placeholder="Enter email address">
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                   
+                    <div class="col-md-6">
+                        <label class="form-label">
+                            Password
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <div class="input-group">
+
+                            <input
+                                type="password"
+                                id="password"
+                                class="form-control"
+                                placeholder="Enter password">
+
+                            <button
+                                class="btn btn-outline-secondary"
+                                type="button"
+                                id="togglePassword">
+
+                                <i class="bi bi-eye"></i>
+
+                            </button>
+
+                            <div class="invalid-feedback"></div>
+
+                        </div>
+                    </div>
+
+                    
+                    <div class="col-md-6">
+                        <label class="form-label">
+                            Role
+                            <span class="text-danger">*</span>
+                        </label>
+
+                       <select id="role" class="form-select">
+                            <option value="">Select Role</option>
+                        </select>
+                        
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                   
+                    <div class="col-md-6 d-none" id="managerDiv">
+
+                        <label class="form-label">
+                            Manager
+                            <span class="text-danger">*</span>
+                        </label>
+
+                        <select class="form-select" id="managerId">
+                            <option value="">Select Manager</option>
+                        </select>
+                        
+                        <div class="invalid-feedback"></div>
+                    </div>
+
+                    
+                    <div class="col-md-6">
+                        <label class="form-label">
+                            Status
+                        </label>
+
+                        <select id="status" class="form-select">
+                            <option value="true">Active</option>
+                            <option value="false">Inactive</option>
+                        </select>
+                    </div>
+
+                </div>
+
+               
+                <hr class="my-4">
+
+                <div class="d-flex justify-content-end gap-2">
+
+                    <button
+                        type="reset"
+                        class="btn btn-outline-secondary">
+
+                        <i class="bi bi-arrow-counterclockwise me-2"></i>
+                        Reset
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        id="addBtn"
+                        class="btn btn-outline-primary addBtn">
+
+                        <i class="bi bi-check-circle me-2"></i>
+                        Create User
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script type="module" src="{{ url_for('static', filename='js/adduser.js') }}"></script>
+
+{% endblock %}

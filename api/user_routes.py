@@ -28,9 +28,21 @@ def createUser():
 @role_required('ADMIN')
 def getAllUser():
 
-    responseDto = UserService.getAllUser()
+
+    Page = request.args.get("page", type=int)
+    PageSize = request.args.get("pagesize", type=int)
+    Search = request.args.get("search", type=str)
+    sortColumn  = request.args.get("sortcolumn", type=str)
+    sortDirection  = request.args.get("sortdirection", type=str)
+    roleId = request.args.get("roleid", type=str)
+    isActive = request.args.get("isactive", type=str)
+
+
+    responseDto, message = UserService.getAllUser(pagesize=PageSize, page=Page, search=Search, sortcolumn=sortColumn, 
+                                                  sortdirection=sortDirection,roleid=roleId, isactive=isActive)
     return api_response(
         success=True,
+        message=message,
         data=responseDto,
         status_code=200
     )
@@ -58,6 +70,7 @@ def updateUser(userId: int):
     return api_response(
         success=success,
         data=response['message'],
+        message= response['message'],
         status_code=status
     )
 
@@ -67,6 +80,33 @@ def updateUser(userId: int):
 def deleteUser(userId: int):
 
     response, success, status,message = UserService.deleteUserById(userId)
+    return api_response(
+        success=success,
+        message=message,
+        data=response,
+        status_code=status
+    )
+
+
+@user_routes.route('/getRoles', methods=['GET'])
+@jwt_required()
+@role_required('ADMIN')
+def getRoles():
+
+    response, success, status,message = UserService.getUserRoles()
+    return api_response(
+        success=success,
+        message=message,
+        data=response,
+        status_code=status
+    )
+
+@user_routes.route('/getManager', methods=['GET'])
+@jwt_required()
+@role_required('ADMIN')
+def getManager():
+    
+    response, success, status,message = UserService.getManager()
     return api_response(
         success=success,
         message=message,

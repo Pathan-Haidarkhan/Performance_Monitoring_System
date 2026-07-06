@@ -16,9 +16,19 @@ def login():
 def admin_dashboard():
     return render_template("/Admin/dashboard.html")
 
-@ui_bp.route("/Admin/userlist")
+@ui_bp.route("/Admin/userManagement")
 def userlist():
-    return render_template("/Admin/userlist.html")
+    return render_template("/Admin/userManagement.html")
+
+@ui_bp.route("/Admin/addUser")
+def adduser():
+    return render_template("/Admin/addUser.html")
+
+
+@ui_bp.route("/Admin/editUser/<int:userId>")
+def editUser(userId):
+    return render_template("/Admin/editUser.html", userId = userId)
+
 
 @ui_bp.route("/Manager/dashboard")
 def manager_dashboard():
