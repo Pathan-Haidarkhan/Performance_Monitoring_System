@@ -6,3 +6,4 @@ from .taskStatusMaster import TaskStatusMaster
 from .taskActivityLogs import TaskActivityLogs
 from .performanceMaster import PerformanceMaster
 from .performanceLogs import  PerformanceLogs
+from .departmentMaster import DepartmentMaster

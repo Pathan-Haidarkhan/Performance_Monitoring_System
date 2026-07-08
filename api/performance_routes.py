@@ -9,7 +9,7 @@ from flask_jwt_extended import jwt_required
 metric_routes = Blueprint('metric_routes', __name__,url_prefix='/matric/performance')
 
 @metric_routes.route('/createMetric', methods=['POST'])
-@jwt_required
+@jwt_required()
 @role_required('ADMIN')
 def createMetric():
 
@@ -23,7 +23,7 @@ def createMetric():
     )
 
 @metric_routes.route('/updateMetric/<int:metricId>', methods=['PUT'])
-@jwt_required
+@jwt_required()
 @role_required('ADMIN')
 def updateMetric(metricId):
     dto = PerformanceMetricUpdateDTO(**request.json)
@@ -37,7 +37,7 @@ def updateMetric(metricId):
 
 
 @metric_routes.route('/getAllMetric', methods=['GET'])
-@jwt_required
+@jwt_required()
 @role_required('ADMIN')
 def getAllMetric():
     response, success, status = PerformanceService.getAllMetrics()
@@ -49,7 +49,7 @@ def getAllMetric():
     )
 
 @metric_routes.route('/deleteMetric/<int:metricId>', methods=['DELETE'])
-@jwt_required
+@jwt_required()
 @role_required('ADMIN')
 def deleteMetric(metricId):
     response, success, status = PerformanceService.deleteMetric(metricId)

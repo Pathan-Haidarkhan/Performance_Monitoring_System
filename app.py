@@ -1,6 +1,6 @@
 from flask import Flask
 
-from api import user_routes
+
 from config import Config
 from extensions import db, jwt, migrate
 from utils.handlers import register_error_handlers, register_jwt_handlers
@@ -26,6 +26,9 @@ app.register_blueprint(auth_routes)
 app.register_blueprint(user_routes)
 app.register_blueprint(task_routes)
 app.register_blueprint(dashboard_routes)
+app.register_blueprint(metric_routes)
+app.register_blueprint(department_routes)
+
 app.register_blueprint(ui_bp)
 
 with app.app_context():
