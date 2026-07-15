@@ -10,3 +10,8 @@ class DepartmentMaster(db.Model) :
     Description = db.Column(db.Text)
     ManagerId = db.Column(db.Integer,db.ForeignKey('UserMaster.id'), nullable=False)
     isActive = db.Column(db.Boolean, default=True)
+
+    manager = db.relationship(
+        "User",
+        foreign_keys=[ManagerId]
+    )

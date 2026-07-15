@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<style>
+    .dashboard-card {
+        border: none;
+        border-radius: 16px;
+        overflow: hidden;
+        transition: all .3s ease;
+        height: 100%;
+        background: #fff;
+    }
+
+    .dashboard-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, .08);
+    }
+
+    .dashboard-header {
+        background: #ffffff;
+        border-bottom: 1px solid #edf2f7;
+        font-weight: 600;
+        font-size: 15px;
+        padding: 16px 20px;
+    }
+
+    .avatar-circle{
+        width:40px;
+        height:40px;
+        border-radius:50%;
+        background:#0B3C5D;
+        color:white;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:14px;
+        font-weight:600;
+    }
+
+    .table tbody tr:hover{
+        background:#f8fbff;
+    }
+
+    .addBtn {
+        background: #0B3C5D;
+        color: #FFFFFF;
+        border: none;
+        font-weight: 500;
+        transition: 0.2s;
+    }
+    .addBtn:hover {
+        background: #092f48;
+        color: #FFFFFF;
+    }
+</style>
+
+    <div class="container-fluid">
+
+    <!-- Header -->
+    <div class="card border-0 shadow-sm mb-4">
+        <div class="card-body">
+            <div class="d-sm-flex justify-content-between align-items-center flex-wrap">
+                
+                <div>
+                    <h3 class="fw-bold mb-1">
+                        Department Management
+                    </h3>
+
+                    <small class="text-muted">
+                        Manage departments and their configurations
+                    </small>
+                </div>
+
+                <button class="btn addBtn" id="addbtn">
+                    <i class="bi bi-plus-circle me-2"></i>
+                    Add New Department
+                </button>
+
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="card border-0 shadow-sm dashboard-card mb-4 p-2">
+        <div class="card-body">
+
+            <div class="row g-3">
+                <div class="col-sm-4">
+                    <input
+                        type="text"
+                        id="searchDepartment"
+                        class="form-control"
+                        placeholder="Search by department name">
+                </div>
+
+                <div class="col-sm-4">
+                   <select id="statusFilter" class="form-select">
+                        <option value="">Select Status</option>
+                        <option value="true">Active</option>
+                        <option value="false">Inactive</option>
+                    </select>
+                </div>
+
+                <div class="col-sm-2">
+                    <button class="btn btn-outline-primary w-100" id="filterBtn">
+                        Filter
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+   
+    <div class="card shadow-sm dashboard-card">
+        <div class="card-header dashboard-header d-sm-flex justify-content-between align-items-center">
+
+            <span>
+                Department List
+            </span>
+
+            <span class="badge bg-primary">
+                <span id="totalDepartments">0</span> Departments
+            </span>
+
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="departmentTable" class="table table-striped table-hover table-bordered text-center align-middle w-100">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Department</th>
+                            <th class="text-center" >Manager</th>
+                            <th class="text-center" >Status</th>
+                            <th class="text-center" >Actions</th>
+                        </tr>
+                    </thead>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="module" src="{{ url_for('static', filename='js/departmentManagement.js') }}"></script>
+
+{% endblock %}

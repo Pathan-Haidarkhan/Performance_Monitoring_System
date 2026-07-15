@@ -1,5 +1,5 @@
 from dto.request.DepartmentRequest import DepartmentRequest
-from dto.response.departmentResponse import DepartmentResponse
+from dto.response.departmentResponse import DepartmentMainResponse, DepartmentResponse
 from extensions import db
 from models import DepartmentMaster
 from utils.security import current_user, current_user_role
@@ -21,6 +21,39 @@ class DepartmentService:
         db.session.commit()
         return {'departmentId': department.DepartmentId, 'message':'Department Created successfully'}, True, 200
     
+    
+    @staticmethod
+    def getAllDepartments(search, isactive):
+        
+        query = DepartmentMaster.query
+        if search:
+            query = query.filter(DepartmentMaster.DepartmentName.ilike(f"%{search}%"))
+        
+        if isactive:
+            query = query.filter(DepartmentMaster.isActive == (isactive == 'true'))
+        
+
+        departmentList = query.order_by(DepartmentMaster.DepartmentName.desc()).all()
+        totalRecords = query.count()
+
+        items = [
+            DepartmentResponse(
+                DepartmentId=department.DepartmentId,
+                DepartmentName=department.DepartmentName,
+                Description=department.Description,
+                ManagerName=department.manager.FullName if department.manager else None,
+                isActive=department.isActive,
+             ) for department in departmentList
+        ]
+        
+        response = DepartmentMainResponse[DepartmentResponse](
+            items=items,
+            totalRecords= totalRecords
+        ).model_dump(exclude_none=True)
+
+        return response, True, 200,'Get All Departments successfully'
+    
+    
     @staticmethod
     def getDepartmentById(deptId: int):
 
@@ -29,8 +62,9 @@ class DepartmentService:
         if detail is None:
               return {'message': 'Department not found'}, False, 404
         
-        return DepartmentResponse.from_orm(detail).model_dump()
+        return DepartmentResponse.model_validate(detail).model_dump()
     
+
     @staticmethod
     def updateDepartmentById(dto: DepartmentRequest, deptId: int):
         
@@ -46,6 +80,7 @@ class DepartmentService:
 
         return {'departmentId': department.DepartmentId ,'message': 'Department updated successfully'}, True, 200
     
+
     @staticmethod
     def deleteDepartmentById(deptId: int):
 

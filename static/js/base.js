@@ -33,25 +33,25 @@ if (role === "ADMIN") {
     menuItems = [
         { name: "Dashboard", link: "/Admin/dashboard", icon: "bi-speedometer2" },
         { name: "User Management", link: "/Admin/userManagement", icon: "bi-people" },
-        { name: "Departments", link: "/admin/departments", icon: "bi-building" },
-        { name: "Projects", link: "/admin/projects", icon: "bi-kanban" },
-        { name: "Reports", link: "/admin/reports", icon: "bi-bar-chart" }
+        { name: "Departments", link: "/Admin/departmentManagement", icon: "bi-building" },
+        { name: "Projects", link: "/Admin/projects", icon: "bi-kanban" },
+        { name: "Reports", link: "/Admin/reports", icon: "bi-bar-chart" }
     ];
 }
 
 if (role === "MANAGER") {
     menuItems = [
         { name: "Dashboard", link: "/Manager/dashboard", icon: "bi-speedometer2" },
-        { name: "Team", link: "/manager/team", icon: "bi-people" },
-        { name: "Reports", link: "/manager/reports", icon: "bi-bar-chart" }
+        { name: "Team", link: "/Manager/team", icon: "bi-people" },
+        { name: "Reports", link: "/Manager/reports", icon: "bi-bar-chart" }
     ];
 }
 
 if (role === "EMPLOYEE") {
     menuItems = [
         { name: "Dashboard", link: "/Employee/dashboard", icon: "bi-speedometer2" },
-        { name: "My Tasks", link: "/employee/tasks", icon: "bi-list-check" },
-        { name: "Profile", link: "/employee/profile", icon: "bi-person" }
+        { name: "My Tasks", link: "/Employee/tasks", icon: "bi-list-check" },
+        { name: "Profile", link: "/Employee/profile", icon: "bi-person" }
     ];
 }
 

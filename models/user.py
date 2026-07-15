@@ -1,3 +1,4 @@
+
 from datetime import datetime
 from extensions import db
 
@@ -16,6 +17,10 @@ class User(db.Model):
     createdDate = db.Column(db.DateTime, default=datetime.now)
     updatedDate = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
+    @property
+    def FullName(self):
+        return f"{self.firstName} {self.lastName}"
+    
     role  = db.relationship(
         "Role",
         back_populates="user")

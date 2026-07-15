@@ -37,6 +37,22 @@ def getDepartmentById(deptId: int):
     )
 
 
+@department_routes.route('/getAllDepartments', methods=['GET'])
+@jwt_required()  
+@role_required('ADMIN')
+def getAllDepartments():
+
+    Search = request.args.get("search", type=str)
+    isActive = request.args.get("isactive", type=str)
+
+    responseDto = DepartmentService.getAllDepartments(search=Search, isactive=isActive)
+    return api_response(
+        success=True,
+        data=responseDto,
+        status_code=200
+    )
+
+
 
 @department_routes.route('/updateDepartmentById/<int:deptId>', methods=['PUT'])
 @jwt_required()  
